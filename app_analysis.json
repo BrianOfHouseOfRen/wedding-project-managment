@@ -1,0 +1,26 @@
+{
+  "html": {
+    "issues": [
+      "Example/placeholder content found in HTML"
+    ],
+    "improvements": [
+      "Add more HTML comments for documentation"
+    ]
+  },
+  "css": {
+    "issues": [],
+    "improvements": [
+      "Consider adding vendor prefixes for better browser compatibility"
+    ]
+  },
+  "js": {
+    "issues": [],
+    "improvements": [
+      "Consider cleaning up event listeners to prevent memory leaks"
+    ]
+  },
+  "summary": {
+    "total_issues": 1,
+    "total_improvements": 3
+  }
+}

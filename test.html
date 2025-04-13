@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chart-container {
+            height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Chart.js Test</h1>
+    <div class="chart-container">
+        <canvas id="test-chart"></canvas>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chartCanvas = document.getElementById('test-chart');
+            
+            // Sample data
+            const completedPercentage = 75;
+            
+            // Create chart
+            const chart = new Chart(chartCanvas, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'In Progress'],
+                    datasets: [{
+                        data: [completedPercentage, 100 - completedPercentage],
+                        backgroundColor: ['#4caf50', '#e0e0e0'],
+                        borderColor: ['#4caf50', '#e0e0e0'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 1000,
+                        easing: 'easeOutQuart'
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'centerText',
+                    beforeDraw: function(chart) {
+                        const width = chart.width;
+                        const height = chart.height;
+                        const ctx = chart.ctx;
+                        
+                        ctx.restore();
+                        
+                        // Font settings for percentage
+                        const fontSize = (height / 8).toFixed(2);
+                        ctx.font = `bold ${fontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+                        ctx.textBaseline = 'middle';
+                        ctx.textAlign = 'center';
+                        
+                        // Get completion percentage
+                        const percentage = chart.data.datasets[0].data[0];
+                        const text = `${percentage}%`;
+                        
+                        // Draw percentage
+                        ctx.fillStyle = '#333333';
+                        ctx.fillText(text, width / 2, height / 2);
+                        
+                        // Font settings for "Complete" text
+                        const smallerFontSize = (height / 16).toFixed(2);
+                        ctx.font = `${smallerFontSize}px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+                        
+                        // Draw "Complete" text
+                        ctx.fillStyle = '#777';
+                        ctx.fillText('Complete', width / 2, height / 2 + parseInt(fontSize));
+                        
+                        ctx.save();
+                    }
+                }]
+            });
+            
+            console.log('Chart initialized successfully');
+        });
+    </script>
+</body>
+</html>

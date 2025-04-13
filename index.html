@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Filmmaker Project Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 
+        Wedding Filmmaker Project Manager
+        
+        This application helps wedding filmmakers track their projects and tasks.
+        Features include:
+        - Adding new wedding projects with couple names and dates
+        - Tracking progress of standard tasks (Cull, Speeches, Feature Film, Short Film)
+        - Visual progress indicators for each project
+        - Analytics dashboard showing overall project completion
+        - Data persistence using localStorage
+        
+        Usage:
+        1. Add a new project using the form at the top
+        2. Check off tasks as they are completed
+        3. View overall progress in the analytics section
+        4. All data is saved automatically in your browser
+    -->
+</head>
+<body>
+    <!-- Header section with application title -->
+    <header>
+        <h1>Wedding Filmmaker Project Manager</h1>
+    </header>
+
+    <main>
+        <!-- Project creation form section -->
+        <section class="add-project-section">
+            <h2>Add New Project</h2>
+            <!-- Form for adding new wedding film projects -->
+            <form id="add-project-form">
+                <div class="form-group">
+                    <label for="project-name">Project Name</label>
+                    <input type="text" id="project-name" name="project-name" required placeholder="Couple's names (e.g., Smith-Johnson Wedding)">
+                </div>
+                <div class="form-group">
+                    <label for="project-date">Wedding Date</label>
+                    <input type="date" id="project-date" name="project-date" required>
+                </div>
+                <button type="submit" class="btn-primary">Add Project</button>
+            </form>
+        </section>
+
+        <!-- Projects display section -->
+        <section class="projects-section">
+            <h2>Current Projects</h2>
+            <!-- Container for dynamically generated project cards -->
+            <div id="projects-container" class="projects-grid">
+                <!-- Projects will be dynamically added here by JavaScript -->
+                <!-- Each project card will contain:
+                     - Project name and date
+                     - Progress bar
+                     - Task checkboxes for: Cull, Speeches, Feature Film, Short Film
+                -->
+            </div>
+        </section>
+
+        <!-- Analytics section with chart visualization -->
+        <section class="analytics-section">
+            <h2>Project Completion Analytics</h2>
+            <!-- Chart.js container for doughnut chart showing completion percentage -->
+            <div class="chart-container">
+                <canvas id="completion-chart"></canvas>
+                <!-- Chart displays percentage of completed projects vs. in-progress projects -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section with copyright information -->
+    <footer>
+        <p>&copy; 2025 Wedding Filmmaker Project Manager</p>
+    </footer>
+
+    <!-- Main application JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
